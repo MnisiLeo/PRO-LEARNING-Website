@@ -11,23 +11,18 @@ permissions:
   pages: write
   id-token: write
 
-concurrency:
-  group: pages
-  cancel-in-progress: false
-
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v6
 
       - name: Setup Node.js
         uses: actions/setup-node@v7
         with:
-          node-version: 24
-          cache: npm
+          node-version: '24'
 
       - name: Install dependencies
         run: npm install
@@ -41,13 +36,7 @@ jobs:
       - name: Upload website
         uses: actions/upload-pages-artifact@v4
         with:
-          path: ./dist
+          path: './dist'
 
       - name: Deploy website
-        id: deployment
         uses: actions/deploy-pages@v4
-
-      - name: Display website URL
-        run: echo "Website URL: ${{ steps.deployment.outputs.page_url }}"
-
-      
