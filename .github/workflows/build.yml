@@ -1,4 +1,4 @@
-name: Deploy Ka-Shali Academy Website
+name: Build and Deploy Website
 
 on:
   push:
@@ -21,12 +21,13 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         with:
           node-version: 24
+          cache: npm
 
       - name: Install dependencies
         run: npm install
@@ -34,17 +35,19 @@ jobs:
       - name: Build website
         run: npm run build
 
-      - name: Setup GitHub Pages
+      - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
 
       - name: Upload website
         uses: actions/upload-pages-artifact@v4
         with:
-          path: './dist'
+          path: ./dist
 
-      - name: Deploy to GitHub Pages
+      - name: Deploy website
         id: deployment
         uses: actions/deploy-pages@v4
 
-      - name: Show website URL
+      - name: Display website URL
         run: echo "Website URL: ${{ steps.deployment.outputs.page_url }}"
+
+      
