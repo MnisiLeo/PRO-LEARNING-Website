@@ -1,0 +1,9 @@
+{
+  "name": "KA-SHALI PRO-LEARNING CHRISTIAN ACADEMY",
+  "short_name": "Ka-Shali Academy",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#f5faf7",
+  "theme_color": "#064f43",
+  "icons": [{"src":"/school-logo.png","sizes":"512x512","type":"image/png","purpose":"any maskable"}]
+}
