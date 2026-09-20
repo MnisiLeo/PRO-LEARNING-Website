@@ -346,3 +346,57 @@ body,.app{background:var(--bg)}
 .materialViewerBody.pdfViewer{overflow:hidden;padding:0}
 @media(max-width:760px){.pdfNativeFrame{min-height:68vh}}
 .ksGallery{padding:70px 6%;background:#f4f8f5}.ksGalleryHead{max-width:760px;margin:0 auto 26px;text-align:center}.ksGalleryHead h2{margin:8px 0;color:var(--navy);font-size:clamp(26px,4vw,42px)}.ksGalleryHead p{color:var(--muted);margin:0}.ksGalleryGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;max-width:1180px;margin:auto}.ksGalleryGrid img{width:100%;height:270px;object-fit:cover;border-radius:18px;display:block;box-shadow:0 12px 35px rgba(6,63,53,.12)}@media(max-width:900px){.ksGalleryGrid{grid-template-columns:1fr 1fr}.ksGalleryGrid img{height:230px}}@media(max-width:560px){.ksGallery{padding:48px 15px}.ksGalleryGrid{grid-template-columns:1fr}.ksGalleryGrid img{height:260px}}
+
+/* HOME VISUAL REFRESH — appearance only, V25 functionality preserved */
+.ksHome{background:#f6faf8;color:#15362e}
+.ksHero{background:#f6faf8;padding:22px 22px 0}
+.ksHeroImage{height:min(690px,76vh);min-height:570px;max-width:1320px;margin:0 auto;border-radius:30px;box-shadow:0 24px 70px rgba(4,47,40,.18);overflow:hidden}
+.ksHeroImage>img{object-position:center 32%;transform:scale(1.01)}
+.ksHeroShade{background:linear-gradient(90deg,rgba(2,35,29,.9) 0%,rgba(2,35,29,.62) 38%,rgba(2,35,29,.18) 70%,rgba(2,35,29,.08) 100%),linear-gradient(0deg,rgba(2,35,29,.78) 0%,transparent 52%)}
+.ksHeroBrand{top:28px;left:32px;right:32px;padding:12px 16px;width:max-content;max-width:calc(100% - 64px);border:1px solid rgba(255,255,255,.2);background:rgba(3,47,40,.32);backdrop-filter:blur(14px);border-radius:18px}
+.ksHeroBrand img{width:70px;height:70px}
+.ksHeroBrand h1{font-size:clamp(14px,1.8vw,24px);letter-spacing:1.1px}
+.ksHeroBrand h1 span{color:#b9f3d0}
+.ksHeroMessage{left:58px;bottom:58px;max-width:690px}
+.ksHeroMessage .ksEyebrow{font-size:11px;letter-spacing:3px;color:#c8f4d9;margin-bottom:14px}
+.ksHeroMessage h2{font-size:clamp(48px,6.4vw,84px);line-height:.94;letter-spacing:-4px;margin-bottom:24px}
+.ksHeroMessage h2 em{color:#54df96}
+.ksHeroMessage p{padding:13px 19px;border-radius:12px;font-size:13px;box-shadow:0 8px 24px rgba(0,0,0,.12)}
+.ksIntro{max-width:1320px;padding:72px 5.5%;grid-template-columns:1.1fr .9fr;gap:65px}
+.ksIntroCopy{max-width:730px}
+.ksIntroCopy h2{font-size:clamp(38px,4.4vw,60px);letter-spacing:-2.8px;margin-bottom:16px}
+.ksIntroCopy p{font-size:15px;line-height:1.8;color:#64776f;margin-bottom:30px}
+.ksActions{gap:12px}
+.ksAction{min-height:82px;border:1px solid #d9e8e1;border-radius:17px;background:#fff;padding:15px 16px;box-shadow:0 8px 24px rgba(6,63,53,.055);transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease}
+.ksAction:hover{transform:translateY(-3px);box-shadow:0 16px 34px rgba(6,63,53,.10);border-color:#bcdacc}
+.ksAction.primary{background:linear-gradient(135deg,#063f35,#08735a);border-color:#063f35;box-shadow:0 12px 30px rgba(6,63,53,.18)}
+.ksAction span b{font-size:13px}.ksAction span small{font-size:9px;margin-top:4px;color:#71847b}.ksAction.primary span small{color:#c9e7da}
+.ksMotto{padding:30px 28px;border-radius:24px;background:linear-gradient(145deg,#063f35,#08735a);color:#fff;box-shadow:0 20px 45px rgba(6,63,53,.16);position:relative;overflow:hidden}
+.ksMotto:after{content:"";position:absolute;width:170px;height:170px;border-radius:50%;right:-65px;bottom:-80px;border:28px solid rgba(255,255,255,.07)}
+.ksMotto span{display:block;color:#aee9c8;font-size:9px;font-weight:900;letter-spacing:2px;margin-bottom:13px;position:relative;z-index:1}
+.ksMotto strong{display:block;font-size:clamp(22px,2.5vw,31px);line-height:1.16;letter-spacing:-.7px;position:relative;z-index:1}
+.ksMotto small{display:block;color:#c9e2d8;margin-top:13px;line-height:1.6;position:relative;z-index:1}
+.ksFeatureBand{padding:70px 5.5%;background:#edf6f1;border-top:1px solid #dfebe5;border-bottom:1px solid #dfebe5;grid-template-columns:.8fr 1.2fr;gap:60px}
+.ksFeatureBand h2{font-size:clamp(29px,3.5vw,43px);letter-spacing:-1.7px}
+.ksFeatureBand p{font-size:13px;line-height:1.8}
+.ksFeatureGrid{gap:14px}
+.ksFeatureGrid>div{min-height:104px;border-radius:18px;padding:20px;box-shadow:0 8px 22px rgba(6,63,53,.045);transition:transform .18s ease,box-shadow .18s ease}
+.ksFeatureGrid>div:hover{transform:translateY(-2px);box-shadow:0 14px 30px rgba(6,63,53,.08)}
+.ksFeatureGrid svg{width:24px;height:24px}
+.ksGallery{padding:78px 5.5%;background:#fff}
+.ksGalleryHead{max-width:720px;margin-bottom:32px}
+.ksGalleryHead h2{font-size:clamp(30px,4vw,44px);letter-spacing:-1.6px}
+.ksGalleryGrid{grid-template-columns:1.3fr .7fr .7fr 1.3fr;gap:16px;max-width:1320px}
+.ksGalleryGrid img{height:310px;border-radius:20px;box-shadow:0 14px 35px rgba(6,63,53,.10);transition:transform .25s ease,box-shadow .25s ease}
+.ksGalleryGrid img:hover{transform:scale(1.015);box-shadow:0 20px 45px rgba(6,63,53,.15)}
+.ksContact{margin-top:0;padding:62px 5.5%;border-radius:0;background:linear-gradient(135deg,#042f28,#08735a)}
+.ksContactBrand h2{font-size:clamp(25px,3vw,37px)}
+.ksContactCards{gap:13px}
+.ksContactCards a{min-height:100px;border-radius:17px;background:rgba(255,255,255,.075);transition:transform .18s ease,background .18s ease}
+.ksContactCards a:hover{transform:translateY(-2px);background:rgba(255,255,255,.13)}
+@media(max-width:900px){
+ .ksHero{padding:14px 14px 0}.ksHeroImage{height:620px;min-height:0;border-radius:24px}.ksHeroBrand{left:20px;top:20px;max-width:calc(100% - 40px)}.ksHeroMessage{left:28px;bottom:34px}.ksIntro{padding:54px 6%;grid-template-columns:1fr}.ksFeatureBand{padding:55px 6%;grid-template-columns:1fr}.ksGallery{padding:60px 6%}.ksGalleryGrid{grid-template-columns:1fr 1fr}.ksGalleryGrid img{height:250px}.ksContact{padding:52px 6%}
+}
+@media(max-width:600px){
+ .ksHero{padding:0}.ksHeroImage{height:610px;border-radius:0 0 25px 25px}.ksHeroBrand{left:18px;right:18px;top:18px;max-width:none;width:auto;padding:10px 12px}.ksHeroBrand img{width:56px;height:56px}.ksHeroBrand h1{font-size:12px;letter-spacing:.8px}.ksHeroBrand h1 span{font-size:9px;letter-spacing:1.5px}.ksHeroMessage{left:22px;right:20px;bottom:30px}.ksHeroMessage h2{font-size:47px;letter-spacing:-2.6px}.ksHeroMessage p{font-size:11px;padding:11px 15px}.ksIntro{padding:48px 20px}.ksIntroCopy h2{font-size:38px}.ksIntroCopy p{font-size:14px}.ksMotto{padding:26px 22px;border-radius:20px}.ksFeatureBand{padding:48px 20px}.ksFeatureGrid{grid-template-columns:1fr}.ksGallery{padding:52px 20px}.ksGalleryGrid{grid-template-columns:1fr}.ksGalleryGrid img{height:275px}.ksContact{padding:45px 20px}.ksContactCards{grid-template-columns:1fr}.ksContactCards a{min-height:84px}
+}
