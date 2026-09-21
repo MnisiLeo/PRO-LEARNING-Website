@@ -233,57 +233,82 @@ function compressImage(file,maxSize=900,quality=.66){
 function FileCapture({label,accept='image/*,.pdf',value,onValue,camera=false}){
   const cameraInput=useRef(null),fileInput=useRef(null);
   const [busy,setBusy]=useState(false);
-  const uidBase=useId().replace(/:/g,'');
-  const cameraId=`camera-${uidBase}`;
-  const fileId=`file-${uidBase}`;
+  const [localPreview,setLocalPreview]=useState(value||'');
 
-  async function readAsDataUrl(file){
+  useEffect(()=>{
+    if(value!==undefined && value!==localPreview)setLocalPreview(value||'');
+  },[value]);
+
+  function readAsDataUrl(file){
     return new Promise((resolve,reject)=>{
+      if(!file)return reject(new Error('No file selected'));
       const reader=new FileReader();
+      reader.onload=()=>{
+        const result=String(reader.result||'');
+        if(result)resolve(result); else reject(new Error('Empty file'));
+      };
       reader.onerror=()=>reject(reader.error||new Error('Unable to read file'));
-      reader.onload=()=>resolve(String(reader.result||''));
+      reader.onabort=()=>reject(new Error('File read was cancelled'));
       reader.readAsDataURL(file);
     });
   }
 
-  async function readFile(file,input){
+  async function handleFileChange(event){
+    const input=event.currentTarget;
+    const file=input?.files?.[0];
     if(!file)return;
     setBusy(true);
     try{
-      // Read the original file first so the selected photo is displayed immediately,
-      // even on phones whose browser cannot decode a particular image format for compression.
+      // The original selected file is ALWAYS attached first. Do not make
+      // compression or image decoding a requirement for registration.
       const original=await readAsDataUrl(file);
-      if(!original)throw new Error('Empty file');
+      setLocalPreview(original);
       onValue(original);
-      if(input)input.value='';
 
-      // Compression is an enhancement only. It can never prevent the photo from being attached.
+      // Compression is optional. If it fails, keep the original image.
       if(file.type?.startsWith('image/')){
         try{
-          const compressed=await compressImage(file);
-          if(compressed)onValue(compressed);
-        }catch(err){console.warn('Image compression skipped:',err)}
+          const compressed=await compressImage(file,900,.66);
+          if(compressed){
+            setLocalPreview(compressed);
+            onValue(compressed);
+          }
+        }catch(err){
+          console.warn('Optional image compression skipped:',err);
+        }
       }
     }catch(err){
-      console.warn('File capture failed',err);
-      if(input)input.value='';
-      alert('The selected file could not be read. Please choose the photo again.');
-    }finally{setBusy(false)}
+      console.error('Photo selection failed:',err);
+      alert('The photo was selected but could not be read by this browser. Please choose a JPG or PNG photo and try again.');
+    }finally{
+      setBusy(false);
+      // Do not clear the input until after the browser has completed its
+      // change event. This avoids a mobile Chrome/Samsung file-picker race.
+      window.setTimeout(()=>{try{input.value=''}catch{}},0);
+    }
   }
+
+  function openPicker(input){
+    if(busy)return;
+    input?.click();
+  }
+
+  const shown=localPreview||value||'';
+  const isPhoto=shown.startsWith('data:image');
 
   return <div className="uploadField">
     <div className="uploadFieldLabel">{label}</div>
     <div className="scanField">
-      {value&&value.startsWith('data:image')?<img className="uploadPreview" src={value} alt={label}/>:null}
+      {isPhoto?<img className="uploadPreview" src={shown} alt={label}/>:null}
       <div className="fileStatus">
-        {busy?<><Clock size={15}/><span>Processing file…</span></>:value?<><Paperclip size={15}/><span>{value.startsWith('data:image')?'Photo selected':'Document selected'}</span></>:<span>Nothing attached yet</span>}
+        {busy?<><Clock size={15}/><span>Reading selected photo…</span></>:isPhoto?<><Paperclip size={15}/><span>Photo selected</span></>:shown?<><Paperclip size={15}/><span>Document selected</span></>:<span>Nothing attached yet</span>}
       </div>
       <div className="scanActions">
-        {camera&&<label htmlFor={cameraId} className="captureBtn"><Camera size={15}/> Camera</label>}
-        <label htmlFor={fileId} className="captureBtn"><Upload size={15}/> Choose photo</label>
+        {camera&&<button type="button" className="captureBtn" onClick={()=>openPicker(cameraInput.current)} disabled={busy}><Camera size={15}/> Camera</button>}
+        <button type="button" className="captureBtn" onClick={()=>openPicker(fileInput.current)} disabled={busy}><Upload size={15}/> Choose photo</button>
       </div>
-      <input id={cameraId} ref={cameraInput} className="fileInputHidden" type="file" accept="image/*" capture="environment" onChange={e=>readFile(e.target.files?.[0],e.target)}/>
-      <input id={fileId} ref={fileInput} className="fileInputHidden" type="file" accept={accept} onChange={e=>readFile(e.target.files?.[0],e.target)}/>
+      <input ref={cameraInput} className="fileInputHidden" type="file" accept="image/*" capture="environment" onChange={handleFileChange}/>
+      <input ref={fileInput} className="fileInputHidden" type="file" accept={accept} onChange={handleFileChange}/>
     </div>
   </div>
 }
