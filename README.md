@@ -61,6 +61,22 @@ The final student/parent results report shows **exam marks only**, together with
 
 When a parent submits feedback, the feedback workflow creates a notification for the Principal/Head Teacher and Deputy Principal so that the appropriate school leadership can review it.
 
+## Website administration
+
+The public website does **not** display a Website Admin button. The website CMS is a separate administration area at:
+
+```text
+/website-admin
+```
+
+Example on a custom domain:
+`https://your-domain.example/website-admin`
+
+Example on GitHub Pages:
+`https://your-account.github.io/your-repository/website-admin`
+
+The Website Admin controls the public website content (home hero slides, About School, Courses, Gallery, Contact and Admissions). It is separate from the EduLink **System Admin** used for school-management functions.
+
 ## Running the website locally
 
 Requirements:
@@ -155,3 +171,23 @@ The exact application source remains in the project's React/Vite source tree. Th
 
 See `WORKFLOW.md` for the detailed school and user workflows.
 See `WEB-DEPLOYMENT.md` for web hosting/deployment notes.
+
+## Separate administration systems
+
+This V25 test website now has two separate administration areas:
+
+1. **EduLink System Admin** — manages the school-management/learning platform: users, school records, approvals, notifications, learners and platform functions.
+2. **Website Admin** — manages what visitors see on the public Ka-Shali website: Home/hero slides, About School, Courses, Gallery, Contact and Admissions content.
+
+### Website Admin access
+
+Open the public website and select **Website Admin** in the footer.
+
+Initial credentials for this frontend test build:
+
+- Username: `websiteadmin`
+- Password: `KaShali@2026!`
+
+After signing in, use **Security** to change the website-admin password.
+
+> This V25 build is a frontend/local-storage test implementation. Website-admin content changes are stored in the browser's local storage, so they are not yet a shared server-side CMS for different visitors/devices. A real production CMS requires a backend/database and authenticated server-side administration API.
