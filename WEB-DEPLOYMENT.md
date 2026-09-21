@@ -26,21 +26,3 @@ This folder is the browser website edition based on the supplied V25 project.
 ## Important production architecture note
 
 This package is a complete web frontend, but it is not yet a multi-device cloud backend. Browser localStorage/IndexedDB is isolated to each browser/device. For real school-wide use where a parent on one phone can submit an application and the principal on another device immediately sees it, the website must be connected to a secure backend/database and object storage. The frontend is structured so that those data/file services can replace the local storage layer without redesigning the public site.
-
-## Website Admin URL
-
-The public navigation does not expose the Website Admin. Open the CMS directly at:
-
-```text
-/website-admin
-```
-
-The Vite build also creates a `404.html` SPA fallback so the route can be opened directly on GitHub Pages/static hosting.
-
-## Separate administration routes (V26)
-
-- Public website: the normal GitHub Pages URL.
-- Website CMS: append `/website-admin/` to the same site URL.
-- System Admin login: use the **System Admin Login** button inside the Website Admin login/control panel. It opens the protected System Admin login route without adding a System Admin button to the public navigation.
-
-The **View public website** button in Website Admin opens the actual public root URL rather than reopening the `/website-admin/` route.
