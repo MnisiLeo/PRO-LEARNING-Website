@@ -155,3 +155,23 @@ The exact application source remains in the project's React/Vite source tree. Th
 
 See `WORKFLOW.md` for the detailed school and user workflows.
 See `WEB-DEPLOYMENT.md` for web hosting/deployment notes.
+
+## Separate administration systems
+
+This V25 test website now has two separate administration areas:
+
+1. **EduLink System Admin** — manages the school-management/learning platform: users, school records, approvals, notifications, learners and platform functions.
+2. **Website Admin** — manages what visitors see on the public Ka-Shali website: Home/hero slides, About School, Courses, Gallery, Contact and Admissions content.
+
+### Website Admin access
+
+Open the public website and select **Website Admin** in the footer.
+
+Initial credentials for this frontend test build:
+
+- Username: `websiteadmin`
+- Password: `KaShali@2026!`
+
+After signing in, use **Security** to change the website-admin password.
+
+> This V25 build is a frontend/local-storage test implementation. Website-admin content changes are stored in the browser's local storage, so they are not yet a shared server-side CMS for different visitors/devices. A real production CMS requires a backend/database and authenticated server-side administration API.
