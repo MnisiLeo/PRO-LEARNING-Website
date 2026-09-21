@@ -36,3 +36,11 @@ The public navigation does not expose the Website Admin. Open the CMS directly a
 ```
 
 The Vite build also creates a `404.html` SPA fallback so the route can be opened directly on GitHub Pages/static hosting.
+
+## Separate administration routes (V26)
+
+- Public website: the normal GitHub Pages URL.
+- Website CMS: append `/website-admin/` to the same site URL.
+- System Admin login: use the **System Admin Login** button inside the Website Admin login/control panel. It opens the protected System Admin login route without adding a System Admin button to the public navigation.
+
+The **View public website** button in Website Admin opens the actual public root URL rather than reopening the `/website-admin/` route.
