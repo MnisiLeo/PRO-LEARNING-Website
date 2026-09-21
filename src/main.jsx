@@ -524,7 +524,7 @@ function Assignments({user,data,setData}){
  function edit(a){setEditing(a);setF({title:a.title||'',description:a.description||'',className:a.className||classes[0]||'',subject:a.subject||'',dueDate:a.dueDate||'',file:null,fileName:a.fileName||'',fileType:a.fileType||'',fileKey:a.fileKey||''});setMsg('');}
  async function openStored(key,meta={}){const blob=await getLocalBlob(key);if(!blob){alert('This file is no longer available.');return;}const url=URL.createObjectURL(blob);setViewer({url,fileName:meta.fileName||'assignment-file',fileType:meta.fileType||blob.type||'application/pdf',title:meta.title||meta.fileName||'Assignment file',storageKey:key});}
  async function downloadStored(key,name){const blob=await getLocalBlob(key);if(!blob){alert('This file is no longer available.');return;}try{await browserDownloadBlob(blob,name||'assignment-file')}catch{alert('The browser could not start the download. Please try again.')}}
-function submitWork(a,file){
+async function submitWork(a,file){
   if(!file)return;
   if(file.type!=='application/pdf'&&!file.type.startsWith('image/')){alert('Choose a PDF or picture.');return;}
   const key=uid('SUB'); await saveLocalBlob(key,file);
