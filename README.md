@@ -61,6 +61,22 @@ The final student/parent results report shows **exam marks only**, together with
 
 When a parent submits feedback, the feedback workflow creates a notification for the Principal/Head Teacher and Deputy Principal so that the appropriate school leadership can review it.
 
+## Website administration
+
+The public website does **not** display a Website Admin button. The website CMS is a separate administration area at:
+
+```text
+/website-admin
+```
+
+Example on a custom domain:
+`https://your-domain.example/website-admin`
+
+Example on GitHub Pages:
+`https://your-account.github.io/your-repository/website-admin`
+
+The Website Admin controls the public website content (home hero slides, About School, Courses, Gallery, Contact and Admissions). It is separate from the EduLink **System Admin** used for school-management functions.
+
 ## Running the website locally
 
 Requirements:
