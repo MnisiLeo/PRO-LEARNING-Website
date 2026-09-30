@@ -191,3 +191,19 @@ Initial credentials for this frontend test build:
 After signing in, use **Security** to change the website-admin password.
 
 > This V25 build is a frontend/local-storage test implementation. Website-admin content changes are stored in the browser's local storage, so they are not yet a shared server-side CMS for different visitors/devices. A real production CMS requires a backend/database and authenticated server-side administration API.
+
+## Multi-school edition: Ka-Shali + Bethel
+
+This edition keeps the existing Ka-Shali school-management functions and adds a second, equivalent school context for **Bethel Pro-Learning Christian Academy**.
+
+- `S1` = Ka-Shali Pro-Learning Christian Academy
+- `S2` = Bethel Pro-Learning Christian Academy
+- Users, learner records, applications, staff, attendance, marks, assignments, resources, chats, notifications, calendar, payments and other school records carry a `schoolId`.
+- Non-System-Admin portal views are scoped to the signed-in user's `schoolId` before the page receives its data, so a Bethel account receives only Bethel records and a Ka-Shali account receives only Ka-Shali records.
+- Registration includes an explicit School selector and the selected `schoolId` stays attached to the application/user through approval and login.
+- User approval tables show the school attached to each registration.
+- Public branding can be switched between the two schools. Bethel uses the supplied Bethel badge/prospectus artwork and a purple visual theme; Ka-Shali retains its existing identity.
+
+### Production security note
+
+The supplied V25 package is a browser/local-storage frontend and does not contain a shared server-side authentication/database layer. The multi-school filtering and record tagging in this package provide application-level separation inside the frontend, but **a true security boundary against a user modifying browser storage/devtools or directly requesting another school's records requires the online backend described above**. When connecting a backend, enforce `schoolId` in server-side authentication, database queries, storage rules and authorization checks as well as in the frontend.
